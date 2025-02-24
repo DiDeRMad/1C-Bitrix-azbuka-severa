@@ -1,0 +1,86 @@
+body {
+  background: #fff !important;
+}
+
+.mail-wrap {
+  max-width: none !important;
+}
+
+.mail-grid {
+  width: auto !important;
+}
+
+[data-bx-block-editor-place], html {
+  /* width: 750px !important; */
+  margin: 0 auto;
+  width: 100% !important;
+}
+#bxStylistHeader {
+  background: #fff !important;
+}
+
+.button, a, a span {
+  transition: all .3s !important;
+}
+a:hover, a:hover span {
+  /* font-weight: 700 !important; */
+  color: #F38040 !important;
+}
+.button:hover {
+  background: #F38040 !important;
+  color: #fff !important;
+}
+.button_big *,.button_big {
+  transition: all .7s !important;
+}
+.button_big:hover table {
+  background: #EDEFF7 !important;
+}
+.button_big:hover * {
+  color: rgb(163, 163, 163) !important;
+}
+.react-message-wrapper__body > div{
+  background: #fff !important;
+}
+
+/* ----- debug (Starting line.) ----- */
+html {
+  /* width: 1600px !important; */
+}
+/* ----- debug (Ending line.) ----- */
+@media (max-width: 740px) {
+  .navigaton > td {
+    display: block !important;
+  }
+  .navigaton > td > table {
+    display: inline-block !important;
+  }
+  .navigaton a {
+    display: block !important;
+    margin-top: 5px !important;
+    margin-bottom: 5px !important;
+  }
+  .navigaton a, .navigaton a * { 
+    font-size: 15px !important;
+  }
+  .navigaton_top {
+    display: none !important;
+  }
+  .bxBlockPadding {
+    padding: 8px !important;
+  }
+  .letter-body {
+    width: 100% !important;
+  }
+  .message, .message * {
+    font-size: 14px !important;
+    line-height: 18px !important;
+    text-align: left !important;
+  }
+  .cart-item {
+    margin: 0 4px !important;
+  }
+  .catalog-item:nth-child(n+2) {
+    display: none !important;
+  }
+}

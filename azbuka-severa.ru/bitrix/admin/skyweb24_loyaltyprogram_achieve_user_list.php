@@ -1,0 +1,1 @@
+<? require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/skyweb24.loyaltyprogram/admin/achieve_user_list.php");?>

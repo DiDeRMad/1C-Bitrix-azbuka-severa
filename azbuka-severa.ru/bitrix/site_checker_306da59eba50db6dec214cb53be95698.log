@@ -1,0 +1,185 @@
+2024-Dec-24 04:18:02 Наличие необходимых модулей php (check_php_modules): Ok
+Все необходимые модули установлены
+2024-Dec-24 04:18:02 Обязательные параметры PHP (check_php_settings): Ok
+Настройки правильные
+2024-Dec-24 04:18:02 Модули веб-сервера (check_security): Warning
+Замечание. Загружен модуль mod_dav/mod_dav_fs, WebDav не будет работать
+2024-Dec-24 04:18:02 Значения переменных сервера (check_server_vars): Ok
+Корректные
+2024-Dec-24 04:18:03 Сохранение сессии (check_session): Ok
+50% done
+2024-Dec-24 04:18:03 Сохранение сессии (check_session): Ok
+Успешно
+2024-Dec-24 04:18:03 Параметры настройки UTF (mbstring и константа BX_UTF) (check_mbstring): Ok
+Правильные. Сайт работает в UTF кодировке
+2024-Dec-24 04:18:03 Служебные скрипты в корне сайта (check_install_scripts): Ok
+Отсутствуют
+2024-Dec-24 04:18:03 Работа с сокетами (check_socket): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:03 Выполнение агентов на cron (check_bx_crontab): Ok
+Успешно
+2024-Dec-24 04:18:03 Лишний вывод в файлах конфигурации (check_dbconn): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:04 Сохранение сессии без UserAgent (check_session_ua): Ok
+50% done
+Connection to ssl://azbuka-severa.ru:443	Success
+
+2024-Dec-24 04:18:04 Сохранение сессии без UserAgent (check_session_ua): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:04 Настройки сайтов (check_sites): Ok
+Правильные
+2024-Dec-24 04:18:04 Размер стека и pcre.recursion_limit (check_pcre_recursion): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:04 Загрузка файла (check_upload): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:04 Загрузка файла больше 4Мб (check_upload_big): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:04 Загрузка файла через php://input (check_upload_raw): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:05 Передача POST запроса с большим числом параметров (check_post): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:05 Отправка почты (check_mail): Ok
+Успешно
+2024-Dec-24 04:18:05 Отправка почтового сообщения больше 64Кб (check_mail_big): Ok
+Успешно
+2024-Dec-24 04:18:05 Проверка на наличие неотправленных сообщений (check_mail_b_event): Ok
+Успешно
+2024-Dec-24 04:18:05 Внутреннее перенаправление (функция LocalRedirect) (check_localredirect): Ok
+50% done
+Connection to ssl://azbuka-severa.ru:443	Success
+
+2024-Dec-24 04:18:05 Внутреннее перенаправление (функция LocalRedirect) (check_localredirect): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:06 Фактическое ограничение памяти (check_memory_limit): Ok
+20% done
+Connection to ssl://azbuka-severa.ru:443	Success
+
+2024-Dec-24 04:18:06 Фактическое ограничение памяти (check_memory_limit): Ok
+40% done
+Connection to ssl://azbuka-severa.ru:443	Success
+
+2024-Dec-24 04:18:06 Фактическое ограничение памяти (check_memory_limit): Ok
+60% done
+Connection to ssl://azbuka-severa.ru:443	Success
+
+2024-Dec-24 04:18:06 Фактическое ограничение памяти (check_memory_limit): Ok
+80% done
+Connection to ssl://azbuka-severa.ru:443	Success
+
+2024-Dec-24 04:18:06 Фактическое ограничение памяти (check_memory_limit): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+== Request ==
+GET /bitrix/admin/site_checker.php?test_type=memory_test&unique_id=4c3ed104056933026f8a94ffa8e20047&max=255 HTTP/1.1
+Host: azbuka-severa.ru
+
+
+== Response ==
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Tue, 24 Dec 2024 01:18:06 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Vary: Accept-Encoding
+
+== Body ==
+<br />
+<b>Fatal error</b>:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 1052672 bytes) in <b>/var/www/www-root/data/www/azbuka-severa.ru/bitrix/modules/main/admin/site_checker.php</b> on line <b>138</b><br />
+
+==========
+
+Не менее 128 М
+2024-Dec-24 04:18:07 Работа с файлами кеша (check_cache): Ok
+Успешно
+2024-Dec-24 04:18:07 Доступ к серверу обновлений (check_update): Ok
+Успешно
+2024-Dec-24 04:18:07 HTTP авторизация (check_http_auth): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:07 Создание и запуск файла (check_exec): Ok
+Connection to ssl://azbuka-severa.ru:443	Success
+
+Успешно
+2024-Dec-24 04:18:07 Функция getimagesize для swf (check_getimagesize): Ok
+Успешно
+2024-Dec-24 04:18:07 Версия MySQL-сервера (check_mysql_bug_version): Ok
+Успешно
+2024-Dec-24 04:18:09 Время на БД и веб-сервере (check_mysql_time): Ok
+Успешно
+2024-Dec-24 04:18:09 Режим работы MySQL (check_mysql_mode): Ok
+Успешно
+2024-Dec-24 04:18:09 Кодировка соединения (check_mysql_connection_charset): Ok
+character_set_connection=utf8mb3, collation_connection=utf8mb3_unicode_ci, character_set_results=utf8mb3
+Успешно
+2024-Dec-24 04:18:09 Кодировка базы данных (check_mysql_db_charset): Ok
+CHARSET=utf8mb3, COLLATION=utf8mb3_unicode_ci
+Успешно
+2024-Dec-24 04:18:09 Формат хранения таблиц в БД (check_mysql_table_format): Ok
+Успешно
+2024-Dec-24 04:18:10 Кодировки таблиц в БД (check_mysql_table_charset): Ok
+Успешно
+2024-Dec-24 04:18:12 Структура базы данных (check_mysql_table_structure): Ok
+0% done
+2024-Dec-24 04:18:13 Структура базы данных (check_mysql_table_structure): Ok
+2% done
+2024-Dec-24 04:18:13 Структура базы данных (check_mysql_table_structure): Ok
+5% done
+2024-Dec-24 04:18:13 Структура базы данных (check_mysql_table_structure): Ok
+8% done
+2024-Dec-24 04:18:13 Структура базы данных (check_mysql_table_structure): Ok
+11% done
+2024-Dec-24 04:18:14 Структура базы данных (check_mysql_table_structure): Ok
+14% done
+2024-Dec-24 04:18:14 Структура базы данных (check_mysql_table_structure): Ok
+17% done
+2024-Dec-24 04:18:14 Структура базы данных (check_mysql_table_structure): Ok
+20% done
+2024-Dec-24 04:18:14 Структура базы данных (check_mysql_table_structure): Ok
+22% done
+2024-Dec-24 04:18:15 Структура базы данных (check_mysql_table_structure): Ok
+25% done
+2024-Dec-24 04:18:16 Структура базы данных (check_mysql_table_structure): Ok
+28% done
+2024-Dec-24 04:18:16 Структура базы данных (check_mysql_table_structure): Ok
+31% done
+2024-Dec-24 04:18:17 Структура базы данных (check_mysql_table_structure): Ok
+34% done
+2024-Dec-24 04:18:17 Структура базы данных (check_mysql_table_structure): Ok
+37% done
+2024-Dec-24 04:18:18 Структура базы данных (check_mysql_table_structure): Ok
+40% done
+2024-Dec-24 04:18:18 Структура базы данных (check_mysql_table_structure): Ok
+42% done
+2024-Dec-24 04:18:18 Структура базы данных (check_mysql_table_structure): Ok
+45% done
+2024-Dec-24 04:18:19 Структура базы данных (check_mysql_table_structure): Ok
+48% done
+2024-Dec-24 04:18:20 Структура базы данных (check_mysql_table_structure): Ok
+51% done
+2024-Dec-24 04:18:20 Структура базы данных (check_mysql_table_structure): Ok
+54% done
+2024-Dec-24 04:18:20 Структура базы данных (check_mysql_table_structure): Ok
+57% done
+2024-Dec-24 04:18:20 Структура базы данных (check_mysql_table_structure): Ok
+60% done
+2024-Dec-24 04:18:24 Структура базы данных (check_mysql_table_structure): Ok
+62% done

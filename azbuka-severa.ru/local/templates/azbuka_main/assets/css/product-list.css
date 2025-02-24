@@ -1,0 +1,115 @@
+.product-list {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.product-list__item-wrapper {
+    padding: 0 10px;
+    margin-bottom: 30px;
+}
+.product-list__item {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.product-list__img-wrapper {
+    height: 134px;
+    width: 100%;
+    display: block;
+    position: relative;
+    margin-bottom: 10px;
+    flex: 0 0 auto;
+}
+.product-list__img {
+    width: 100%;
+    height: 100%;
+    object-position: center center;
+    object-fit: contain;
+}
+.product-list__discount {
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #EB4474;
+    height: 24px;
+    white-space: nowrap;
+    line-height: 24px;
+    padding: 0 5px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #FFFFFF;
+    border-radius: 1px;
+}
+.product-list__favorite {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("data:image/svg+xml,%3Csvg width='34' height='30' viewBox='0 0 34 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M14.3965 5.27149C11.8016 2.61767 7.53166 2.61767 4.93683 5.27149C2.42316 7.84229 2.42316 11.9502 4.93683 14.521L16.7688 26.6218C16.8956 26.7515 17.1043 26.7515 17.2311 26.6218L29.0631 14.521C31.5768 11.9502 31.5768 7.84229 29.0631 5.27149C26.4683 2.61767 22.1983 2.61767 19.6035 5.27149L17.8938 7.02011C17.6586 7.26062 17.3363 7.39621 17 7.39621C16.6636 7.39621 16.3415 7.26062 16.1061 7.02011L14.3965 5.27149ZM3.14931 3.52369C6.72481 -0.13306 12.6085 -0.13306 16.184 3.52369L17 4.35824L17.816 3.52369C21.3915 -0.13306 27.2751 -0.13306 30.8506 3.52369C34.3143 7.06606 34.3143 12.7263 30.8506 16.2687L19.0186 28.3695C17.9111 29.5022 16.0888 29.5022 14.9813 28.3695L3.14931 16.2687C-0.314338 12.7263 -0.314338 7.06606 3.14931 3.52369Z' fill='%2312266B'/%3E%3C/svg%3E");
+}
+.product-list__favorite.active {
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='28' viewBox='0 0 32 28' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M2.66713 2.95254C6.10896 -0.567512 11.7727 -0.567512 15.2145 2.95254L16 3.75589L16.7855 2.95254C20.2273 -0.567512 25.891 -0.567512 29.3329 2.95254C32.6671 6.36247 32.6671 11.8111 29.3329 15.221L17.9432 26.8695C16.8771 27.9598 15.1229 27.9598 14.0568 26.8695L2.66713 15.221C-0.667037 11.8111 -0.667037 6.36247 2.66713 2.95254Z' fill='%2312266B'/%3E%3C/svg%3E%0A");
+}
+.product-list__content {
+    flex: 1 1 auto;
+}
+.product-list__options {
+    font-size: 14px;
+    line-height: 1.43;
+    color: #9599b1;
+}
+.product-list__price-wrapper {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.product-list__price {
+    font-weight: 700;
+    color: #12266B;
+}
+.product-list__price-old {
+    font-weight: 400;
+    text-decoration-line: line-through;
+    color: #9599B1;
+}
+.product-list__name {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    color: #12266B;
+}
+.product-list__name:hover {
+    color: #1b389e;
+}
+.product-list__btn.btn {
+    align-self: flex-start;
+    margin-top: 10px;
+    padding: 0 24px;
+    flex: 0 0 auto;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M10 18.75C9.30964 18.75 8.75 19.3096 8.75 20C8.75 20.6904 9.30964 21.25 10 21.25C10.6904 21.25 11.25 20.6904 11.25 20C11.25 19.3096 10.6904 18.75 10 18.75ZM7.25 20C7.25 18.4812 8.48122 17.25 10 17.25C11.5188 17.25 12.75 18.4812 12.75 20C12.75 21.5188 11.5188 22.75 10 22.75C8.48122 22.75 7.25 21.5188 7.25 20ZM18 18.75C17.3096 18.75 16.75 19.3096 16.75 20C16.75 20.6904 17.3096 21.25 18 21.25C18.6904 21.25 19.25 20.6904 19.25 20C19.25 19.3096 18.6904 18.75 18 18.75ZM15.25 20C15.25 18.4812 16.4812 17.25 18 17.25C19.5188 17.25 20.75 18.4812 20.75 20C20.75 21.5188 19.5188 22.75 18 22.75C16.4812 22.75 15.25 21.5188 15.25 20Z' fill='%23ffffff'/%3E%3Cpath d='M1.49998 2.75C1.78467 2.75001 1.88363 2.75062 1.96779 2.7575C2.81868 2.82714 3.55687 3.37236 3.87364 4.16516C3.90498 4.24358 3.93463 4.33789 4.01838 4.61007L5.97994 10.9851L5.99316 11.0281C6.29594 12.0122 6.54213 12.8123 6.81597 13.4359C7.10167 14.0864 7.44679 14.6169 7.98784 15.0165C8.52889 15.4161 9.13745 15.59 9.84321 15.6717C10.5197 15.7501 11.3569 15.7501 12.3865 15.7501H12.4314H14.5358H14.581C15.6178 15.7501 16.4607 15.7501 17.1414 15.6709C17.8515 15.5883 18.4635 15.4126 19.0064 15.0087C19.4367 14.6885 19.7422 14.2855 19.9914 13.8052C20.0566 13.6796 20.1179 13.5487 20.1766 13.4126C20.3324 13.0515 20.4785 12.6318 20.6311 12.1519C20.7836 11.6721 20.4203 11.1858 19.9168 11.1858C19.5862 11.1858 19.2954 11.4024 19.1952 11.7175C19.0549 12.1581 18.9294 12.5169 18.7993 12.8185C18.5742 13.3402 18.3653 13.616 18.111 13.8052C17.8567 13.9944 17.5325 14.1153 16.9681 14.1809C16.3841 14.2489 15.6287 14.2501 14.5358 14.2501H12.4314C11.346 14.2501 10.596 14.2489 10.0158 14.1817C9.45511 14.1167 9.13249 13.9972 8.87899 13.8099C8.6255 13.6227 8.41633 13.3495 8.18936 12.8327C7.95451 12.298 7.73281 11.5814 7.41361 10.544L5.93855 5.75006H11.6365C12.0507 5.75006 12.3865 5.41428 12.3865 5.00006C12.3865 4.58585 12.0507 4.25006 11.6365 4.25006H5.5C5.49234 4.25006 5.48471 4.25018 5.47711 4.2504L5.45205 4.16894L5.44241 4.13762C5.37193 3.90849 5.32359 3.7513 5.26657 3.60859C4.73861 2.28726 3.5083 1.37857 2.09014 1.2625C1.93697 1.24997 1.77251 1.24998 1.53278 1.25L0.999908 1.25006C0.585695 1.25011 0.249949 1.58594 0.25 2.00015C0.250051 2.41437 0.585878 2.75011 1.00009 2.75006L1.49998 2.75Z' fill='%23ffffff'/%3E%3Cpath d='M18.2215 1.95517C18.6357 1.95517 18.9715 2.29097 18.9715 2.70517V4.95517H21.2215C21.6357 4.95517 21.9715 5.29097 21.9715 5.70517C21.9715 6.11937 21.6357 6.45517 21.2215 6.45517H18.9715V8.70517C18.9715 9.11937 18.6357 9.45517 18.2215 9.45517C17.8073 9.45517 17.4715 9.11937 17.4715 8.70517V6.45517H15.2215C14.8073 6.45517 14.4715 6.11937 14.4715 5.70517C14.4715 5.29097 14.8073 4.95517 15.2215 4.95517H17.4715V2.70517C17.4715 2.29097 17.8073 1.95517 18.2215 1.95517Z' fill='%23ffffff'/%3E%3C/svg%3E");
+}
+@media screen and (max-width: 767px) {
+    .product-list.row {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+    .product-list__item-wrapper {
+        margin-bottom: 16px;
+        padding: 0 5x;
+    }
+}
+@media screen and (min-width: 768px) {
+    .product-list__item {
+        width: 134px;
+    }
+}

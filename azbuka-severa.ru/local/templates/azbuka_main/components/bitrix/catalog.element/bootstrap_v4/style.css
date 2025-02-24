@@ -1,0 +1,48 @@
+.weasocial {
+	margin-top: 50px;
+/*
+	border: 1px solid #edeff7;
+	border-radius: 3px;
+	padding: 15px;
+	background-image: url('/local/templates/azbuka_main/assets/css/../img/pattern.svg');
+	text-align: center;
+*/
+}
+
+.weasocial-icons {
+	zoom: .7
+}
+
+.weasocial span.header-social {
+	display: block;
+	margin: 0 0 10px;
+}
+
+.product-card__description {
+	margin-top: 35px;
+}
+.product-card__title {
+ 	margin-bottom: 15px;
+}
+.label-container {
+ 	margin-bottom: 10px;
+}
+.product-card__content {
+	display: block !important;
+}
+
+.label-quantity {
+ 	margin-bottom: 20px;
+	display: inline-block;
+	border: 1px solid #c1c1c1;
+	color: #c1c1c1;
+	border-radius: 25px;
+	padding: 10px 25px;
+}
+.label-quantity .available {
+	color: #4caf50;
+}
+
+.ya-share2__container_shape_round .ya-share2__badge {
+	margin-right: 6px;
+}

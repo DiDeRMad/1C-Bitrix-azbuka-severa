@@ -1,0 +1,1 @@
+<?require($_SERVER["DOCUMENT_ROOT"].'/bitrix/modules/acrit.core/admin/orders/profile_list.php');?>

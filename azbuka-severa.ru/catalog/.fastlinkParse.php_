@@ -1,0 +1,124 @@
+<?php
+// SEO FILTER PAGER
+
+$page = $APPLICATION->GetCurPage();
+
+$page = urlencode($page);
+$page = str_replace("%2F", "/", $page);
+
+// Блок с редиректом. Если мы зашли на страницу фильтрации, для которой есть БС - то нас перекинет на страницу БС
+$arSelect301 = Array("ID", "IBLOCK_ID", "PROPERTY_FILTER_LINK", "PROPERTY_LINK");
+$arFilter301 = Array("IBLOCK_ID"=> 22, "PROPERTY_FILTER_LINK"=> $page, 'ACTIVE' => 'Y');
+$res301 = CIBlockElement::GetList([], $arFilter301, false, ["nPageSize"=>1], $arSelect301);
+while($ob301 = $res301->GetNextElement()) {
+    $arFields301 = $ob301->GetFields();
+
+    $newpage = $arFields301["PROPERTY_LINK_VALUE"];
+    if ($_SERVER['QUERY_STRING']) {
+        $newpage .= '?' . $_SERVER['QUERY_STRING'];
+    }
+    header("HTTP/1.1 301 Moved Permanently");
+    header("Location: $newpage");
+    exit();
+}
+
+
+
+$arSelect = ["ID", "IBLOCK_ID", "NAME", "PROPERTY_SECTION", "PROPERTY_FILTER_LINK", "PROPERTY_LINK",  "PROPERTY_H1"];
+$arFilter = ["IBLOCK_ID"=> 22, "PROPERTY_LINK"=> $page, 'ACTIVE' => 'Y'];
+$res = CIBlockElement::GetList([], $arFilter, false, ["nPageSize"=>1], $arSelect);
+while($ob = $res->GetNextElement()) {
+    $arFields = $ob->GetFields();
+    $arProps = $ob->GetProperties();
+
+    $paramURL = $arFields["PROPERTY_FILTER_LINK_VALUE"];
+    $arParseUrl = explode("/filter/", $paramURL);
+    $GLOBALS["cleanUrl"] = $arParseUrl[0]."/";
+
+    // $paramDESC = $arFields["PREVIEW_TEXT"];
+$ipropValues = new \Bitrix\Iblock\InheritedProperty\ElementValues(
+                        $arFields["IBLOCK_ID"], // ID инфоблока
+                        $arFields["ID"] // ID элемента
+                    );
+$arElMetaProp = $ipropValues->getValues();
+
+    $GLOBALS["seoFilterH1"] = $arFields["PROPERTY_H1_VALUE"];
+    $GLOBALS["seoFilterTitle"] = $arElMetaProp["ELEMENT_META_TITLE"];
+    $GLOBALS["seoFilterKeywords"] = $arElMetaProp["ELEMENT_META_KEYWORDS"];
+    $GLOBALS["seoFilterDescription"] = $arElMetaProp["ELEMENT_META_DESCRIPTION"];
+    //$GLOBALS["seoBeforeElemsText"] = $arFields["~PROPERTY_TEXT_BEFORE_VALUE"]["TEXT"];
+    $GLOBALS["fastlinkPage"] = 'Y';
+    //$GLOBALS["seoCanonical"] = $arFields['PROPERTY_CANONICAL_VALUE'];
+    //$GLOBALS['newDir'] = true;
+
+    //$breadName = $arFields["NAME"];
+}
+
+if($paramURL) {
+    global $catalogFilter;
+    $catalogFilter =[];
+    $page = explode("/filter/", $paramURL);
+
+    $sectionCode = $page[0];
+    $GLOBALS['SECTION_CODE_PATH'] = mb_substr($sectionCode, 1);
+    $sectionCode = explode("/", $sectionCode);
+    $sectionCode = array_diff($sectionCode, [0, null]);
+
+    $parent = count($sectionCode) - 1;
+    $last = count($sectionCode);
+    $parentCode = $sectionCode[$parent];
+    $sectionCode = $sectionCode[$last];
+
+    if ($parentCode == 'catalog') {
+        $arSelectSection = ["ID"];
+        $arFilterSection = ["IBLOCK_ID" => 5, "CODE" => $sectionCode];
+        $rsSect = CIBlockSection::GetList([], $arFilterSection, false, $arSelectSection);
+        while ($arSect = $rsSect->GetNext()) {
+            $paramSECTION = $arSect["ID"];
+            break;
+        }
+    } else {
+        $arSelectSection = ["RIGHT_MARGIN", "LEFT_MARGIN", "ID"];
+        $arParentFilterSection = ["IBLOCK_ID" => 5, "CODE" => $parentCode];
+        $rsParentSect = CIBlockSection::GetList([], $arParentFilterSection, false, $arSelectSection);
+        if ($arParent = $rsParentSect->fetch()) {
+            $arSelectSection = ["ID", "RIGHT_MARGIN", "LEFT_MARGIN", 'CODE'];
+            $arFilterSection = [
+                "IBLOCK_ID" => 5,
+                "CODE" => $sectionCode,
+                [
+                    'LOGIC' => 'AND',
+                    [
+                        '>' . 'LEFT_MARGIN' => $arParent['LEFT_MARGIN']
+                    ],
+                    [
+                        '<=' . 'RIGHT_MARGIN' => $arParent['RIGHT_MARGIN']
+                    ]
+                ]
+            ];
+            $rsSect = CIBlockSection::GetList([], $arFilterSection, false, $arSelectSection);
+            while ($arSect = $rsSect->fetch()) {
+                if ($arSect['LEFT_MARGIN'] > $arParent['LEFT_MARGIN'] && $arSect['RIGHT_MARGIN'] <= $arParent['RIGHT_MARGIN']) {
+                    $paramSECTION = $arSect["ID"];
+                    break;
+                }
+            }
+        }
+    }
+
+
+
+    if ($paramSECTION) {
+        /*$nav = CIBlockSection::GetNavChain(false,$paramSECTION);
+        while($arSectionPath = $nav->GetNext()) {
+            $APPLICATION->AddChainItem($arSectionPath["NAME"], $arSectionPath["SECTION_PAGE_URL"]);
+        }
+        //$APPLICATION->AddChainItem($breadName);*/
+    }
+
+    $url = str_replace("/apply/", "", $page[1]);
+}
+
+$GLOBALS["SMART_FILTER_PATH"] = urldecode($url);
+$GLOBALS["FILTER_SECTION_ID"] = $paramSECTION;
+$GLOBALS['CATALOG_CURRENT_SECTION_ID'] = $paramSECTION;

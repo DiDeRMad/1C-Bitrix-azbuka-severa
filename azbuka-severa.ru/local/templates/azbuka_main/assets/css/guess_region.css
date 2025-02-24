@@ -1,0 +1,154 @@
+#guess_region {
+    position: absolute;
+    left: 40px;
+    top: 40px;
+    z-index: 1100;
+    min-width: 310px;
+    height: 120px;
+    padding: 25px 20px 20px;
+    background: #fff;
+    box-shadow: 0 0 10px 4px rgba(0,0,0,0.1);
+}
+#guess_region:before {
+    content: "";
+    display: block;
+    width: 12px;
+    border: 6px solid transparent;
+    border-bottom: 5px solid #fff;
+    position: absolute;
+    top: -11px;
+}
+#guess_region .show_city {
+    width: 100%;
+    font-size: 16px;
+    line-height: normal;
+    color: #888;
+}
+#guess_region .buttons {
+    width: 100%;
+    height: 40px;
+    margin-top: 15px;
+}
+#guess_region .buttons a {
+    display: block;
+    height: 40px;
+    color: #fff;
+    float: left;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    background: #1b389e;
+}
+#guess_region .buttons a:hover {
+    background: #699bc9;
+}
+#guess_region .buttons a.yes {
+    width: 74px;
+    margin-right: 10px;
+
+}
+#guess_region .buttons a.no {
+    width: 202px;
+}
+#select_region {
+    /*position: absolute;
+    top: 15px;
+    left: 385px;*/
+    z-index: 1000;
+}
+#select_region.active {
+
+}
+#select_region .show_city {
+    text-align: left;
+    font-size: 15px;
+    color: red;
+    background: rgba(33, 56, 113, 0.1);
+    padding: 0 10px;
+    height: 18px;
+    border-radius: 20px;
+}
+#select_region.active .show_city {
+
+}
+#select_region .show_city a {
+    position: relative;
+    display: inline-block;
+    padding: 0 15px 0 15px;
+    color: #6F6F6F;
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 18px;
+}
+#select_region .show_city a:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    display: block;
+    width: 10px;
+    height: 10px;
+    background: url(../images/geo-marker.svg) no-repeat 0 50%;
+}
+#select_region .show_city a:after {
+    content: "";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate(0,-50%);
+    display: block;
+    width: 6px;
+    height: 4px;
+    background: url(../images/geo-chevron.svg) no-repeat 0 50%;
+}
+#select_region .select_city {
+    display: none;
+    position: absolute;
+    top: 40px;
+    left: 50px;
+    width: 520px;
+    padding: 25px 20px 20px;
+    background: #fff;
+    box-shadow: 0 0 10px 4px rgba(0,0,0,0.1);
+}
+#select_region.active .select_city {
+
+}
+#select_region .select_city:before {
+    content: "";
+    display: block;
+    width: 12px;
+    border: 6px solid transparent;
+    border-bottom: 5px solid #fff;
+    position: absolute;
+    top: -11px;
+}
+#select_region .select_city .item_wrapper {
+    float: left;
+    width: 150px;
+    margin: 0 15px 0 0;
+    list-style: none;
+}
+#select_region .select_city .item_wrapper:last-child {
+    margin-right: 0;
+}
+#select_region .select_city .item {
+    display: block;
+    font-size: 13px;
+    line-height: normal;
+    padding-bottom: 10px;
+}
+#select_region .select_city .item a {
+    color: #888888;
+    text-decoration: none;
+}
+#select_region .select_city .item a:hover {
+    color: #598dbe;
+}
+
+#select_region {
+    display: none;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "azbuka_main",
+  "version": "1.0.0",
+  "description": "Custom theme for Azbuka Severa e-commerce site",
+  "main": "description.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "aigen31",
+  "license": "MIT",
+  "dependencies": {
+    "imask": "^7.6.1",
+    "suggestions-jquery": "^22.6.0"
+  }
+}

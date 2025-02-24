@@ -1,0 +1,95 @@
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group__tools {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-right: 32px;
+    margin-bottom: 8px;
+}
+.form-group__tools .form-label {
+    margin: 0;
+}
+.form-group__edit {
+    margin-left: 10px;
+}
+.form-group__del {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.form-label {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.21;
+    color: #B2B9CE;
+    margin: 0 0 8px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+}
+.form-control.input {
+    height: 50px;
+    padding: 0 16px;
+}
+.form-control.datepicker {
+    background-position: calc(100% - 16px) center;
+    background-repeat: no-repeat;
+    background-size: 24px;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIHZpZXdCb3g9IjAgMCAyNSAyNSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNMjAuMDM3MSAzLjYyMTU4SDE5LjAzNzFWMS42MjE1OEgxNy4wMzcxVjMuNjIxNThINy4wMzcxMVYxLjYyMTU4SDUuMDM3MTFWMy42MjE1OEg0LjAzNzExQzIuOTM3MTEgMy42MjE1OCAyLjAzNzExIDQuNTIxNTggMi4wMzcxMSA1LjYyMTU4VjIxLjYyMTZDMi4wMzcxMSAyMi43MjE2IDIuOTM3MTEgMjMuNjIxNiA0LjAzNzExIDIzLjYyMTZIMjAuMDM3MUMyMS4xMzcxIDIzLjYyMTYgMjIuMDM3MSAyMi43MjE2IDIyLjAzNzEgMjEuNjIxNlY1LjYyMTU4QzIyLjAzNzEgNC41MjE1OCAyMS4xMzcxIDMuNjIxNTggMjAuMDM3MSAzLjYyMTU4Wk0yMC4wMzcxIDIxLjYyMTZINC4wMzcxMVY4LjYyMTU4SDIwLjAzNzFWMjEuNjIxNloiIGZpbGw9IiMxMjI2NkIiLz48L3N2Zz4=");
+}
+
+textarea.form-control.input {
+    height: 244px;
+    resize: none;
+    padding: 20px;
+    border-radius: 24px;
+}
+
+.form-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: -0.02em;
+    color: #B2B9CE;
+}
+.form-text_lg {
+    font-size: 18px;
+}
+
+.datepicker.datepicker-dropdown {
+    margin-top: 8px;
+    border-color: #1b389e !important;
+    box-shadow: none !important;
+}
+.datepicker.datepicker-dropdown::before {
+    border-bottom-color: #1b389e !important;
+    left: 20px;
+}
+.datepicker.datepicker-dropdown::after {
+    left: 21px;
+}
+.datepicker.datepicker-dropdown table tr td.active {
+    background: #1b389e !important
+}
+.datepicker.datepicker-dropdown td,
+.datepicker.datepicker-dropdown th {
+    width: 44px;
+    height: 32px;
+}
+.datepicker.dropdown-menu {
+    font-size: 15px;
+}
+
+
+@media screen and (max-width: 767px) {
+    .form-group {
+        margin-bottom: 16px;
+    }
+    textarea.form-control.input {
+        height: 350px;
+    }
+}

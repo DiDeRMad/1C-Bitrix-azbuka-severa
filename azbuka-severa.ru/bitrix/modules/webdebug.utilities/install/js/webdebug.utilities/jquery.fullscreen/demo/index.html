@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>jQuery Any Element Fullscreen Plugin Examples</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.3.1/flatly/bootstrap.min.css">
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<script src="https://code.jquery.com/jquery-3.5.0.slim.min.js"></script>
+    <script src="../jquery.fullscreen-min.js"></script>
+    <style>
+      .container { margin: 150px auto; }
+    </style>
+    <script>
+
+    $(function() {
+
+    $(".fullscreen-supported").toggle($(document).fullScreen() != null);
+    $(".fullscreen-not-supported").toggle($(document).fullScreen() == null);
+
+    $(document).on("fullscreenchange", function(e) {
+       console.log("Full screen changed.");
+       $("#status").text($(document).fullScreen() ?
+           "Full screen enabled" : "Full screen disabled");
+    });
+
+    $(document).on("fullscreenerror", function(e) {
+       console.log("Full screen error.");
+       $("#status").text("Browser won't enter full screen mode for some reason.");
+    });
+
+    });
+
+    </script>
+  </head>
+  <body style="background:#fafafa"><div id="jquery-script-menu">
+<div class="jquery-script-center">
+<ul>
+<li><a href="https://www.jqueryscript.net/other/any-element-fullscreen.html">Download This Plugin</a></li>
+<li><a href="https://www.jqueryscript.net/">Back To jQueryScript.Net</a></li>
+</ul><div id="carbon-block"></div>
+<div class="jquery-script-ads"><script type="text/javascript"><!--
+google_ad_client = "ca-pub-2783044520727903";
+/* jQuery_demo */
+google_ad_slot = "2780937993";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="https://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+<div class="jquery-script-clear"></div>
+</div>
+</div>
+    <div class="container">
+    <h1>jQuery Any Element Fullscreen Plugin Examples</h1>
+    <p>A lightweight fullscreen toggle plugin for modern browsers that allows the vistor to open any element in fullscreen mode.</p>
+    <form action="#" id="form" class="mb-3">
+      <input type="text" class="form-control mb-3"></input>
+      <input type="submit" class="btn btn-primary" />
+    </form>
+    <div id="buttons">
+      <p class="mb-3"><button onclick="$(document).fullScreen(true)">Enter Fullscreen mode (Document)</button>
+      <button onclick="$('#form').fullScreen(true)">Enter Fullscreen mode
+      (Form)</button>
+      <button onclick="$('#buttons').fullScreen(true)">Enter Fullscreen mode (Button panel)</button></p>
+      <p class="mb-3"><button onclick="$(document).fullScreen(false)">Exit Fullscreen mode</button>
+      <button onclick="$(document).toggleFullScreen()">Toggle Fullscreen mode (Document)</button>
+      <button onclick="alert($(document).fullScreen())">Query Fullscreen mode</button></p>
+    </div>
+    <iframe src="iframe.html" width="512" height="100" webkitAllowFullScreen mozAllowFullScreen allowFullScreen>
+    </iframe>
+    <p class="fullscreen-supported alert alert-info">
+      Browser supports fullscreen mode.
+    </p>
+    <p class="fullscreen-not-supported alert alert-danger">
+      Browser does not support fullscreen mode.
+    </p>
+    <p id="status" class=" alert alert-danger"></p>
+    <script>
+try {
+  fetch(new Request("https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js", { method: 'HEAD', mode: 'no-cors' })).then(function(response) {
+    return true;
+  }).catch(function(e) {
+    var carbonScript = document.createElement("script");
+    carbonScript.src = "//cdn.carbonads.com/carbon.js?serve=CK7DKKQU&placement=wwwjqueryscriptnet";
+    carbonScript.id = "_carbonads_js";
+    document.getElementById("carbon-block").appendChild(carbonScript);
+  });
+} catch (error) {
+  console.log(error);
+}
+</script>
+</div>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </body>
+</html>

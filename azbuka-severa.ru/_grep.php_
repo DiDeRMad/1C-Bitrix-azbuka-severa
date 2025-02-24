@@ -1,0 +1,417 @@
+<?php
+die();
+$path = realpath('.');
+$GLOBALS['startTime'] = microtime(true);
+
+function grep($ss, $structure) {
+
+	$count = $found = 0;
+
+	asort($structure['files']);
+
+	// === поиск по названию файла
+	if ($_GET['search-option'] === 'filename') {
+		echo '<pre сlass="search-result">';
+
+		foreach ($structure['filenames'] as $key => $filename) {
+
+			if (preg_match_all('#' . $ss . '#simU', $filename, $m)) {
+				echo '<p><b>' . $structure['files']{$key} . '</b></p>';
+				$found++;
+			}
+
+			$count++;
+		}
+
+		if( $found === 0 ){
+			echo '<p><b>Файлы не найдены</b></p>';
+		}
+
+		$runTime = microtime(true) - $GLOBALS['startTime'];
+
+		echo '<hr>';
+		echo '<br>';
+		echo '<h2>Общее количество файлов попавших в поиск: ' . $count . '</h2>';
+		echo '<h2>Количество файлов с вхождениями: ' . $found . '</h2>';
+		echo '<h2>Время поиска: ' . round($runTime, 4) . ' сек.</h2>';
+		echo '</pre>';
+	}
+
+	// === поиск по содержимому
+	else {
+		echo '<pre сlass="search-result">';
+
+		foreach ($structure['files'] as $file) {
+
+			$file_content = file_get_contents($file);
+			if (preg_match_all('#' . $ss . '#simU', $file_content, $m)) {
+				echo '<p><b>' . $file . '</b></p>';
+				$found++;
+			}
+
+			$filesize = filesize($file);
+			$sum_filesize = $sum_filesize + $filesize;
+			$count++;
+		}
+
+		if( $found === 0 ){
+			echo '<p><b>Файлы не найдены</b></p>';
+		}
+
+		$runTime = microtime(true) - $GLOBALS['startTime'];
+
+		echo '<hr>';
+		echo '<br>';
+		echo '<h2>Общее количество файлов попавших в поиск: ' . $count . '</h2>';
+		echo '<h2>Количество файлов с вхождениями: ' . $found . '</h2>';
+		echo '<h2>Время поиска: ' . round($runTime, 4) . ' сек.</h2>';
+		echo '</pre>';
+	}
+}
+
+
+function read_all_files(
+	$root = '.',
+	$include_ext = array('php', 'htm', 'tpl', 'html', 'js', 'css', 'xml'),
+	$exclude_ext = array('jpg', 'png', 'gif', 'jpeg')
+) {
+
+	if ( !empty($_GET['path'])) {
+		$userPath = $_GET['path'];
+		$last_letter = mb_substr($userPath, 1, 1);
+
+		$userPath = ($last_letter == '\\' || $last_letter == '/') ? $userPath : DIRECTORY_SEPARATOR . $userPath;
+		$root = $_SERVER["DOCUMENT_ROOT"] . $userPath;
+	}
+
+
+	$files = array('files' => array(), 'dirs' => array());
+	$directories = array();
+	$last_letter = $root[strlen($root) - 1];
+	$root = ($last_letter == '\\' || $last_letter == '/') ? $root : $root . DIRECTORY_SEPARATOR;
+	$directories[] = $root;
+
+	while (sizeof($directories)) {
+		$dir = array_pop($directories);
+		if ($handle = opendir($dir)) {
+			while (false !== ($file = readdir($handle))) {
+				if ($file == '.' || $file == '..') {
+					continue;
+				}
+				$filename = $file;
+				$file = $dir . $file;
+				if (is_dir($file)) {
+					$directory_path = $file . DIRECTORY_SEPARATOR;
+					array_push($directories, $directory_path);
+					$files['dirs'][] = $directory_path;
+				}
+				elseif (is_file($file)) {
+					if ( !empty($_GET['include'])) {
+						$include_ext = explode(',', str_replace(" ", "", $_GET['include']));
+					}
+					if ( !empty($_GET['exclude'])) {
+						$exclude_ext = explode(',', str_replace(" ", "", $_GET['exclude']));
+					}
+					if (($file !== ".") && ($file !== "..")
+							&& (empty($include_ext) || in_array(pathinfo($file, PATHINFO_EXTENSION), $include_ext))
+							&& (empty($exclude_ext) || !in_array(pathinfo($file, PATHINFO_EXTENSION), $exclude_ext))
+					) {
+						$files['files'][] = $file;
+						$files['filenames'][] = $filename;
+					}
+				}
+			}
+			closedir($handle);
+		}
+	}
+
+	return $files;
+}
+
+function cropText($text, $length, $seporator_word = true) {
+	if (strlen($text) > $length) {
+		$text = substr($text, 0, strrpos(substr($text, 0, $length), ' ')) . '...';
+	}
+
+	return $text;
+}
+
+?>
+
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+	<meta
+		http-equiv="Content-Type"
+		name="viewport"
+		charset="utf-8"
+		content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+	>
+	<link
+		rel="shortcut icon"
+		href="#"
+	>
+	<title>grep</title>
+	<style type="text/css">
+		body {font-family: Tahoma; font-size:12px;}
+
+
+
+
+
+
+	</style>
+</head>
+<body>
+<style>
+.line {
+  margin-bottom: 2em;
+}
+
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+.input {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.line-regular {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.input.--include,
+.input.--exclude,
+.input.--path {
+  margin-left: 1em;
+}
+
+.btn {
+  margin-top: 2em;
+  margin-right: 1em;
+}
+
+
+.include {
+  color: green;
+}
+
+.exclude {
+  color: red;
+}
+
+.include textarea {
+  background-color: #c4e8c1;
+}
+
+.exclude textarea {
+  background-color: #ffcdcd;
+}
+
+.search-option {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-option label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.search-option input {
+  margin-right: 1em;
+}
+
+form {
+  margin-bottom: 2em;
+}
+
+.copyright {
+  text-align: right;
+}
+.copyright p {
+  margin: 0;
+}
+</style>
+<div class="copyright">
+	<p>version: 1.0.3</p>
+	<p>developed by SadCat88</p>
+</div>
+
+<form action="">
+	<div class="line">
+		<label class="regexp"><p class="label --regexp">RegExp</p>
+			<p class="input --regexp">
+				<span class="line-regular">#</span>
+				<textarea
+					onkeypress="clickPress(event)"
+					style="font-size:18px;font-family:Monaco, Consolas;"
+					name="ss"
+					rows="1"
+					cols="60"
+				><?=@urldecode($_GET['ss'])?></textarea>
+				<span class="line-regular">#</span>
+			</p>
+		</label>
+		Поиск осуществляется с помощью функции preg_match_all( ).
+		<br> Соответственно регулярное выражение поддерживает группы( ), диапазоны[ ], квантификаторы{ } и т.д.
+		<br>
+		<br> Все спецсимволы в строке необходимо экранировать, например "\#" для символа "#"
+		<br> Спецсимволы нуждающиеся в экранировании "#", "\", "(", "[", "$" и т.д.
+		<br>
+		<br>
+	</div>
+
+
+	<div class="line">
+
+		<label class="path">
+			<p class="label --path">Path to search</p>
+			<p><?=$_SERVER["DOCUMENT_ROOT"]?>/</p>
+			<p class="input --path">
+			<textarea
+				onkeypress="clickPress(event)"
+				style="font-size:18px;font-family:Monaco, Consolas;"
+				name="path"
+				rows="1"
+				cols="60"
+			><? if (empty($_GET['path'])) {
+					echo "";
+				}
+				else {
+					echo @urldecode($_GET['path']);
+				} ?></textarea>
+			</p>
+		</label>
+		Если форма пустая, поиск будет произведен от корневой директории.
+	</div>
+
+
+	<div class="line">
+		<label class="include">
+			<p class="label --include">Include .ext</p>
+			<p class="input --include">
+			<textarea
+				onkeypress="clickPress(event)"
+				style="font-size:18px;font-family:Monaco, Consolas;"
+				name="include"
+				rows="1"
+				cols="60"
+			><? if (empty($_GET['include'])) {
+					echo "php, htm, tpl, html, js, css, xml";
+				}
+				else {
+					echo @urldecode($_GET['include']);
+				} ?></textarea>
+			</p>
+		</label>
+	</div>
+
+	<div class="line">
+		<label class="exclude">
+			<p class="label --exclude">Exclude .ext</p>
+			<p class="input --exclude">
+			<textarea
+				onkeypress="clickPress(event)"
+				style="font-size:18px;font-family:Monaco, Consolas;"
+				name="exclude"
+				rows="1"
+				cols="60"
+			><? if (empty($_GET['include'])) {
+					echo "jpg, png, gif, jpeg";
+				}
+				else {
+					echo @urldecode($_GET['exclude']);
+				} ?></textarea>
+			</p>
+		</label>
+	</div>
+
+
+	<div class="search-option">
+		<?
+		$thisChecked = 'checked';
+		if ($_GET['search-option'] == 'filename') {
+			$thisChecked = '';
+		}
+		?>
+		<label><input
+				type="radio"
+				name="search-option"
+				value="content"
+				<?=$thisChecked?>
+			>
+			Поиск по содержимому файла
+		</label>
+
+
+		<?
+		$thisChecked = '';
+		if ($_GET['search-option'] == 'filename') {
+			$thisChecked = 'checked';
+		}
+		?>
+		<label>
+			<input
+				type="radio"
+				name="search-option"
+				value="filename"
+				<?=$thisChecked?>
+			>
+			Поиск по названию файла
+		</label>
+	</div>
+
+
+	<input
+		class="btn"
+		type="submit"
+		value="Search"
+	>
+	<button
+		class="btn --js-reset-all-forms"
+		type="button"
+	>
+		Reset all forms
+	</button>
+</form>
+<hr>
+<? if ( !empty($_GET['ss'])) grep($_GET['ss'], read_all_files($path)); ?>
+
+
+<script>
+		function clickPress(event) {
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				
+				document.querySelector('.btn').click();
+			}
+		}
+
+
+let btnRestAllForms = document.querySelector('.--js-reset-all-forms');
+
+btnRestAllForms.addEventListener('click', (event) => {
+	let thisLocation = window.location;
+	window.location.href = thisLocation.origin +  thisLocation.pathname;
+});
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

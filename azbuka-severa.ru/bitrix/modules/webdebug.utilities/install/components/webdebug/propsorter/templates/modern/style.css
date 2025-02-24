@@ -1,0 +1,104 @@
+.wdu_propsorter * {
+	box-sizing:border-box;
+}
+.wdu_propsorter table {
+	background:transparent;
+	border:0;
+	border-collapse:collapse;
+	border-spacing:0;
+	table-layout:fixed;
+	width:100%;
+}
+.wdu_propsorter tbody th {
+	background:transparent;
+	font-size:105%;
+	padding:4px 4px 8px 0;
+	text-align:left;
+	vertical-align:top;
+}
+.wdu_propsorter tbody + tbody th {
+	padding-top:30px;
+}
+.wdu_propsorter tbody td {
+	background:transparent;
+	padding:4px;
+	text-align:left;
+	vertical-align:top;
+}
+.wdu_propsorter tbody td:first-child {
+	background:url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAABCAYAAAAb4BS0AAAAEElEQVR42mM4c+bMfwYoAAAjUANk+KqFTgAAAABJRU5ErkJggg==') 0 18px repeat-x;
+	padding-left:0;
+	padding-right:15px;
+	width:45%;
+}
+.wdu_propsorter tbody td:first-child > span {
+	background:#fff;
+	padding-right:8px;
+}
+.wdu_propsorter tbody td:last-child {
+	padding-left:8px;
+}
+
+/* Hints */
+.wdu_propsorter tbody td:first-child > span > sup {
+	border:1px solid gray;
+  border-radius:100px;
+  display:inline-block;
+	font-size:75%;
+  height:14px;
+  line-height:14px;
+  position:relative;
+  text-align:center;
+	top:-.25em;
+  width:14px;
+}
+.wdu_propsorter tbody td:first-child > span > sup:hover {
+	background:#eee;
+}
+.wdu_propsorter tbody td:first-child > span > sup:before {
+	content:'?';
+}
+
+/* Vertical magrins and borders */
+.wdu_propsorter tbody + tbody th {
+	border-top:1px solid #eee;
+	padding-top:20px;
+}
+.wdu_propsorter tbody tr:last-child td {
+	padding-bottom:20px;
+}
+.wdu_propsorter tbody:last-child tr:last-child td {
+	padding-bottom:0;
+}
+
+@media (max-width:575px) {
+	.wdu_propsorter table, .wdu_propsorter tbody, .wdu_propsorter tr, .wdu_propsorter th, .wdu_propsorter td {
+		display:block;
+	}
+	.wdu_propsorter tbody td:first-child {
+		background-image:none;
+		color:#777;
+		font-size:95%;
+		width:auto;
+	}
+	.wdu_propsorter tbody td:last-child {
+		margin:-10px 0 0;
+		padding-left:4px;
+	}
+	.wdu_propsorter tbody tr:last-child td:first-child {
+		padding-bottom:4px;
+	}
+}
+
+/* Aspro */
+body.theme-default .wdu_propsorter, body.theme-light .wdu_propsorter, body.theme-dark .wdu_propsorter {
+	margin:10px 20px;
+}
+body.theme-dark .wdu_propsorter tbody td:first-child > span {
+	background:#1b1b1b!important;
+}
+@media (prefers-color-scheme: dark) {
+	.wdu_propsorter tbody td:first-child > span {
+		background:#1b1b1b!important;
+	}
+}

@@ -1,0 +1,97 @@
+.ny-hat{
+    position: absolute;
+    width: 19%;
+    top: -4px;
+    left: 22px;
+    transition: 0.3s;
+}
+header.fixed .ny-hat{
+    position: absolute;
+    width: 16%;
+    top: -4px;
+    left: 32px;
+}
+
+#snow {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	z-index: 110;
+}
+.header {
+	z-index: 100;
+}
+
+.header-bottom {
+	background-image: url("ny_bg-short.png");
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-position: 70% top;
+}
+
+.big-bs:before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	display: block;
+	width: 100%;
+	height: 165px;
+	background: url("ny-line.webp") left top no-repeat;
+	background-size: contain;
+	z-index: 1;
+}
+.inner-header { position: relative; }
+.inner-header__wrapper { z-index: 10; position: relative; }
+.inner-header:after {
+	content: "";
+	position: absolute;
+	left: right;
+	top: 0;
+	display: block;
+	width: 100%;
+	height: 165px;
+	background: url("ny-line-r.webp") right top no-repeat;
+	background-size: contain;
+	z-index: 1;
+}
+
+
+
+
+
+@media screen and (max-width: 1640px) {
+	.header-bottom { 
+		background-position: 73% top;
+	}
+}
+
+@media screen and (max-width: 1280px) {
+	.header-bottom { 
+		background-position: 65% top;
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.header-bottom { 
+		background-position: 65% top;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.header-bottom { 
+		background-position: 87% top;
+	}
+}
+
+@media screen and (max-width: 880px) {
+	.header-bottom { 
+		background: #fff;
+	}
+	.ny-hat{
+		left: 19px;
+	}
+}
