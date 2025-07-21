@@ -1,25 +1,47 @@
-Azbuka Severa is a server created for the sale of game meat, natural food products, and other goods related to hunting and survival in northern conditions. It offers a wide selection of fresh, high-quality products sourced from ecologically clean regions.
+SuperPuper Online Game (SPOG) – MVP
+==================================
 
-Purpose of the Server:
+Этот репозиторий содержит минимально-жизнеспособный прототип (MVP) сетевой онлайн-игры.
+Цель — положить основу, которую можно масштабировать до полнофункционального проекта.
 
-Organizing direct sales of game meat and natural products from trusted suppliers.
+Стек
+----
+1. Сервер: **Node.js 20+**, Express, Socket.IO
+2. Клиент: обычный HTML/JS, Socket.IO-client
 
-Providing high-quality, fresh products that meet strict safety and freshness standards.
+Запуск
+------
+1. Установите зависимости:
 
-Creating a convenient platform for ordering with delivery options.
+   ```bash
+   npm install
+   ```
 
-Promoting a culture of consuming natural products, harvested in their natural habitat.
+2. Запустите сервер разработки:
 
+   ```bash
+   npm run dev
+   ```
 
-What Can You Find on the Server?
+   Сервер поднимется на http://localhost:3000 и будет раздавать клиентские файлы из директории `client/`.
 
-Various types of game meat (venison, wild boar, duck, etc.).
+Структура проекта
+-----------------
+```
+├── README.md          – этот файл
+├── package.json       – зависимости и скрипты
+├── server.js          – HTTP + Socket.IO сервер
+└── client/
+    ├── index.html     – базовая страница
+    └── main.js        – логика подключения к серверу
+```
 
-Fresh and farm-produced goods, including meat, fish, and delicacies.
+Дальнейшие шаги
+---------------
+1. Система аккаунтов (OAuth, JWT)
+2. Лобби и матчмейкинг
+3. Игровая логика (первый режим: чат + мини-игра)
+4. Автотесты (Jest + supertest)
+5. CI/CD (GitHub Actions + Docker + Fly.io / Render / Vercel)
 
-Hunting-related products and items associated with natural food.
-
-Processing and delivery services.
-
-
-🔗 Official website: azbuka-severa.ru
+Feel free to contribute! :)

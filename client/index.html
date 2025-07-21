@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>SPOG MVP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html, body { margin: 0; font-family: sans-serif; height: 100%; }
+      #chat {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background: #222;
+        padding: 10px;
+        display: flex;
+      }
+      #chat input {
+        flex: 1;
+        padding: 8px;
+        border: none;
+      }
+      #chat button {
+        padding: 8px 16px;
+        background: #4caf50;
+        color: white;
+        border: none;
+      }
+      #messages {
+        list-style: none;
+        margin: 0;
+        padding: 20px;
+        overflow-y: scroll;
+        height: calc(100% - 60px);
+      }
+      #messages li { margin: 4px 0; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <div id="chat">
+      <input id="msgInput" placeholder="Введите сообщение..." />
+      <button id="sendBtn">Отправить</button>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

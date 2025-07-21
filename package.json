@@ -1,0 +1,16 @@
+{
+  "name": "spog-mvp",
+  "version": "0.1.0",
+  "description": "SuperPuper Online Game – minimal viable product (server + client)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "NODE_ENV=development node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
