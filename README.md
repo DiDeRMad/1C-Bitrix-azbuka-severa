@@ -8,6 +8,7 @@ SuperPuper Online Game (SPOG) – MVP
 ----
 1. Сервер: **Node.js 20+**, Express, Socket.IO
 2. Клиент: обычный HTML/JS, Socket.IO-client
+3. Мини-игра: «Камень-Ножницы-Бумага» (реализована в каждой комнате)
 
 Запуск
 ------

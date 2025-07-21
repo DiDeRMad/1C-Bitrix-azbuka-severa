@@ -58,6 +58,12 @@
     <!-- Chat / Game section -->
     <div id="gameSection" style="display:none">
       <h2 id="roomTitle">Комната</h2>
+      <div id="rpsControls">
+        <button class="moveBtn" data-move="rock">Камень</button>
+        <button class="moveBtn" data-move="paper">Бумага</button>
+        <button class="moveBtn" data-move="scissors">Ножницы</button>
+      </div>
+      <p id="rpsStatus"></p>
       <ul id="messages"></ul>
       <div id="chat">
         <input id="msgInput" placeholder="Введите сообщение..." />

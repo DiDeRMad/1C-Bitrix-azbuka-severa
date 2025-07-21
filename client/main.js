@@ -17,6 +17,8 @@ const roomTitle = document.getElementById('roomTitle');
 const messagesEl = document.getElementById('messages');
 const inputEl = document.getElementById('msgInput');
 const sendBtn = document.getElementById('sendBtn');
+const rpsControls = document.getElementById('rpsControls');
+const rpsStatus = document.getElementById('rpsStatus');
 
 let socket;
 let currentRoomId = null;
@@ -83,6 +85,19 @@ function initSocket(token) {
   socket.on('chat:msg', ({ username, msg }) => {
     appendMessage(`${username}: ${msg}`);
   });
+
+  socket.on('game:state', ({ moves }) => {
+    const count = Object.keys(moves).length;
+    rpsStatus.textContent = count === 1 ? 'Ожидаем ход соперника...' : '';
+  });
+
+  socket.on('game:result', ({ moves, result }) => {
+    const entries = Object.entries(moves).map(([u, m]) => `${u}: ${m}`).join(', ');
+    let text;
+    if (result === 'draw') text = `Ничья! (${entries})`;
+    else text = `Победил ${result}! (${entries})`;
+    rpsStatus.textContent = text;
+  });
 }
 
 createRoomBtn.addEventListener('click', () => {
@@ -114,6 +129,15 @@ sendBtn.addEventListener('click', () => {
 
 inputEl.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') sendBtn.click();
+});
+
+// Handle RPS move buttons
+rpsControls.addEventListener('click', (e) => {
+  if (!e.target.classList.contains('moveBtn')) return;
+  const move = e.target.dataset.move;
+  if (!currentRoomId) return;
+  socket.emit('game:move', currentRoomId, move);
+  rpsStatus.textContent = 'Ждём результат...';
 });
 
 // Auto-login if token exists

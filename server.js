@@ -35,7 +35,11 @@ io.on('connection', (socket) => {
 
   socket.on('room:create', (roomName, cb) => {
     const roomId = Date.now().toString(36);
-    rooms[roomId] = { name: roomName, players: [] };
+    rooms[roomId] = {
+      name: roomName,
+      players: [],
+      game: { moves: {} }, // Rock-Paper-Scissors state
+    };
     io.emit('rooms:list', rooms);
     if (cb) cb({ roomId });
   });
@@ -46,6 +50,8 @@ io.on('connection', (socket) => {
     socket.join(roomId);
     room.players.push(socket.username);
     io.to(roomId).emit('room:update', room);
+    // Reset game if more than 2 players or someone joins mid-round
+    room.game.moves = {};
     if (cb) cb({ ok: true });
   });
 
@@ -55,6 +61,8 @@ io.on('connection', (socket) => {
     socket.leave(roomId);
     room.players = room.players.filter((p) => p !== socket.username);
     io.to(roomId).emit('room:update', room);
+    // Reset game state if player leaves
+    room.game.moves = {};
     if (cb) cb({ ok: true });
   });
 
@@ -65,6 +73,48 @@ io.on('connection', (socket) => {
       room.players = room.players.filter((p) => p !== socket.username);
     }
     io.emit('rooms:list', rooms);
+  });
+
+  // Mini-game: Rock-Paper-Scissors
+  socket.on('game:move', (roomId, move) => {
+    const room = rooms[roomId];
+    if (!room) return;
+    const validMoves = ['rock', 'paper', 'scissors'];
+    if (!validMoves.includes(move)) return;
+
+    room.game.moves[socket.username] = move;
+
+    const playerNames = Object.keys(room.game.moves);
+    if (playerNames.length < 2) {
+      // Wait for opponent
+      io.to(roomId).emit('game:state', { moves: room.game.moves });
+      return;
+    }
+
+    const [p1, p2] = playerNames;
+    const m1 = room.game.moves[p1];
+    const m2 = room.game.moves[p2];
+
+    function beats(a, b) {
+      return (
+        (a === 'rock' && b === 'scissors') ||
+        (a === 'scissors' && b === 'paper') ||
+        (a === 'paper' && b === 'rock')
+      );
+    }
+
+    let result;
+    if (m1 === m2) result = 'draw';
+    else if (beats(m1, m2)) result = p1;
+    else result = p2;
+
+    io.to(roomId).emit('game:result', {
+      moves: room.game.moves,
+      result,
+    });
+
+    // Reset for next round
+    room.game.moves = {};
   });
 });
 
