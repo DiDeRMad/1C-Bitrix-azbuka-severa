@@ -36,10 +36,33 @@
     </style>
   </head>
   <body>
-    <ul id="messages"></ul>
-    <div id="chat">
-      <input id="msgInput" placeholder="Введите сообщение..." />
-      <button id="sendBtn">Отправить</button>
+    <!-- Login section -->
+    <div id="loginSection">
+      <h2>Вход / Регистрация</h2>
+      <input id="loginUsername" placeholder="Имя пользователя" />
+      <input id="loginPassword" placeholder="Пароль" type="password" />
+      <button id="signupBtn">Регистрация</button>
+      <button id="loginBtn">Войти</button>
+      <p id="loginError" style="color:red"></p>
+    </div>
+
+    <!-- Lobby section -->
+    <div id="lobbySection" style="display:none">
+      <h2>Лобби</h2>
+      <input id="newRoomName" placeholder="Название комнаты" />
+      <button id="createRoomBtn">Создать комнату</button>
+      <h3>Список комнат</h3>
+      <ul id="roomsList"></ul>
+    </div>
+
+    <!-- Chat / Game section -->
+    <div id="gameSection" style="display:none">
+      <h2 id="roomTitle">Комната</h2>
+      <ul id="messages"></ul>
+      <div id="chat">
+        <input id="msgInput" placeholder="Введите сообщение..." />
+        <button id="sendBtn">Отправить</button>
+      </div>
     </div>
 
     <script src="/socket.io/socket.io.js"></script>

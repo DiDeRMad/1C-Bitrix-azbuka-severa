@@ -38,10 +38,9 @@ SuperPuper Online Game (SPOG) – MVP
 
 Дальнейшие шаги
 ---------------
-1. Система аккаунтов (OAuth, JWT)
-2. Лобби и матчмейкинг
-3. Игровая логика (первый режим: чат + мини-игра)
-4. Автотесты (Jest + supertest)
-5. CI/CD (GitHub Actions + Docker + Fly.io / Render / Vercel)
+1. Расширить игровую механику (мини-игра внутри комнаты)
+2. Сохранение данных (PostgreSQL / Redis)
+3. Автотесты (Jest + supertest)
+4. CI/CD (GitHub Actions + Docker + Fly.io / Render / Vercel)
 
 Feel free to contribute! :)
